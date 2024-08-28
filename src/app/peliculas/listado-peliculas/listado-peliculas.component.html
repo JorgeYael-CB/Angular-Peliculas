@@ -1,24 +1,43 @@
-@if (!peliculas) {
-  <img src="loading.gif" alt="Loading gif" width="350" height="350">
-}
-@else if ( peliculas.length == 0 ) {
-  <p>No hay peliculas para mostrar</p>
-}
-@else {
-  @for (pelicula of peliculas; track $index) {
-    <div class="contenedor-pelicula">
-      <div style="display: flex; flex-direction: row; gap: 10px;">
-        <div>
-          <img [src]="pelicula.poster"  width="169" height="250">
-        </div>
 
-        <div>
-          <p>{{$index}}) Pelicula: {{pelicula.titulo }} </p>
-          <p>Fecha lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MM-yyyy" }} </p>
+<button (click)="agregarPelicula()">Agregar pelicula</button>
 
-          <p>Precio: {{pelicula.precio | currency}} </p>
+
+<app-listado-generico [listado]="peliculas">
+
+  <ng-container vacio>
+    <h2> No hay peliculas en cines. <span style="color: red;">Pida rembolso aqui -> <button>rembolso</button> </span> </h2>
+  </ng-container>
+
+  <!-- <ng-container cargando>
+    <h5>Loading...</h5>
+  </ng-container> -->
+
+
+  <ng-container contenido>
+    @for (pelicula of peliculas; track $index) {
+      <div class="contenedor-pelicula">
+        <div style="display: flex; flex-direction: row; gap: 10px;">
+          <div>
+            @if (pelicula.poster) {
+              <img [src]="pelicula.poster"  width="169" height="250">
+            }@else {
+              <img src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"  width="169" height="250">
+            }
+          </div>
+
+          <div>
+            <p>{{$index}}) Pelicula: {{pelicula.titulo }} </p>
+            <p>Fecha lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MM-yyyy" }} </p>
+
+            <p>Precio: {{pelicula.precio | currency}} </p>
+            <button mat-flat-button (click)="remover(pelicula)">
+              <mat-icon>delete</mat-icon>
+              Remover
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  }
-}
+    }
+  </ng-container>
+</app-listado-generico>
+

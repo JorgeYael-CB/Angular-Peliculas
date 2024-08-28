@@ -1,4 +1,4 @@
-<h2> En Cines </h2>
+
 
 
 <!-- <p>Implementacion con ngFor</p>
@@ -18,11 +18,14 @@
 </div> -->
 
 
+<!--
+<input type="file" style="display: none;" #cargadorArchivos>
+<button (click)="cargadorArchivos.click()">Cargar archivo</button> Referenciar click a otros elementos -->
 
 
-<app-listado-peliculas></app-listado-peliculas>
 
+<h2> En Cines </h2>
+<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
 
 <h2>Proximos estrenos</h2>
-
-<app-listado-peliculas></app-listado-peliculas>
+<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>

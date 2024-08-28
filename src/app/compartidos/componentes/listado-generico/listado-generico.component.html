@@ -1,0 +1,25 @@
+
+
+@if (!listado) {
+  <div #cargando>
+    <ng-content select="[cargando]"></ng-content>
+  </div>
+
+  @if (!cargando.innerHTML.trim()) {
+    <img src="loading.gif" alt="Loading gif" width="350" height="350">
+  }
+}
+@else if ( listado.length == 0 ) {
+  <div #vacio>
+    <ng-content select="[vacio]"></ng-content>
+  </div>
+
+  @if (!vacio.innerHTML.trim()) {
+    <div>
+      <p>No hay peliculas para mostrar</p>
+    </div>
+  }
+}
+@else {
+  <ng-content #contenido></ng-content>
+}
