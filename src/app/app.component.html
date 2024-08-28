@@ -1,4 +1,19 @@
+<app-menu></app-menu>
 
+<div class="contenedor">
+  <h2> En Cines </h2>
+  <app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+
+  <h2>Proximos estrenos</h2>
+  <app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+</div>
+
+
+
+
+
+
+<!-- <app-rating [maximoRating]="5" (votado)="procesarVoto($event)"></app-rating> -->
 
 
 <!-- <p>Implementacion con ngFor</p>
@@ -21,11 +36,3 @@
 <!--
 <input type="file" style="display: none;" #cargadorArchivos>
 <button (click)="cargadorArchivos.click()">Cargar archivo</button> Referenciar click a otros elementos -->
-
-
-
-<h2> En Cines </h2>
-<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
-
-<h2>Proximos estrenos</h2>
-<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
