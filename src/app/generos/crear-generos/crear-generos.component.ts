@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
+import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
 
 @Component({
   selector: 'app-crear-generos',
@@ -18,7 +19,7 @@ export class CrearGenerosComponent {
   private formbuilder = inject(FormBuilder);
 
   form = this.formbuilder.group({
-    nombre: ['', {validators: [Validators.required]}] // campo y validaciones.
+    nombre: ['', {validators: [Validators.required, primeraLetraMayuscula()]}] // campo y validaciones.
   });
 
 
@@ -26,8 +27,12 @@ export class CrearGenerosComponent {
   obtenerErrorCampoNombre(): string {
     let nombre = this.form.controls.nombre;
 
-    if( nombre.hasError('required') ){
+    if( nombre.hasError('required') ){ // si tiene el campo required
       return "El campo nombre es requerido";
+    }
+
+    if( nombre.hasError('primeraLetraMayuscula') ){
+      return nombre.getError('primeraLetraMayuscula').mensaje;
     }
 
     return "";
