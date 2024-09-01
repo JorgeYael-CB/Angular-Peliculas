@@ -16,15 +16,5 @@ export class ListadoPeliculasComponent {
   @Input({required: true})
   peliculas!: any[];
 
-  agregarPelicula():void{
-    this.peliculas.push({
-      titulo: "Inception",
-      fechaLanzamiento: new Date(),
-      precio: 500,
-    });
-  }
 
-  remover( pelicula: any ):void {
-    this.peliculas = this.peliculas.filter( p => p.titulo !== pelicula.titulo );
-  }
 }

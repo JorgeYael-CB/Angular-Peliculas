@@ -1,43 +1,30 @@
 
-<button (click)="agregarPelicula()">Agregar pelicula</button>
 
 
 <app-listado-generico [listado]="peliculas">
-
-  <ng-container vacio>
-    <h2> No hay peliculas en cines. <span style="color: red;">Pida rembolso aqui -> <button>rembolso</button> </span> </h2>
-  </ng-container>
-
-  <!-- <ng-container cargando>
-    <h5>Loading...</h5>
-  </ng-container> -->
-
-
   <ng-container contenido>
-    @for (pelicula of peliculas; track $index) {
-      <div class="contenedor-pelicula">
-        <div style="display: flex; flex-direction: row; gap: 10px;">
-          <div>
+    <div class="peliculas-contenedor">
+      @for (pelicula of peliculas; track $index) {
+        <div class="pelicula-contenedor">
+          <a>
             @if (pelicula.poster) {
-              <img [src]="pelicula.poster"  width="169" height="250">
+              <img [src]="pelicula.poster" width="169" height="250" [alt]="pelicula.titulo">
             }@else {
-              <img src="https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg"  width="169" height="250">
+              <img src="https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg" width="169" height="250" [alt]="pelicula.titulo">
             }
-          </div>
+          </a>
+
+          <p>
+            <a>{{pelicula.titulo}}</a>
+          </p>
 
           <div>
-            <p>{{$index}}) Pelicula: {{pelicula.titulo }} </p>
-            <p>Fecha lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MM-yyyy" }} </p>
-
-            <p>Precio: {{pelicula.precio | currency}} </p>
-            <button mat-flat-button (click)="remover(pelicula)">
-              <mat-icon>delete</mat-icon>
-              Remover
-            </button>
+            <a mat-flat-button>Editar</a>
+            <button mat-flat-button type="button" color="warn">Borrar</button>
           </div>
         </div>
-      </div>
-    }
+      }
+    </div>
   </ng-container>
 </app-listado-generico>
 
