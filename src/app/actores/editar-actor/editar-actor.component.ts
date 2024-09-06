@@ -13,9 +13,16 @@ export class EditarActorComponent {
   @Input({transform: numberAttribute})
   id!: number;
 
-  actor: IActorDTO = {id: 1, nombre: 'Tom Holland', fechaNacimiento: new Date('1991-01-25')}
+  actor: IActorDTO = {
+    id: 1,
+    nombre: 'Tom Holland',
+    fechaNacimiento: new Date('1991-01-25'),
+    foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tom_Holland_Bali_2019_1_%28cropped%29_%28cropped%29.jpg/800px-Tom_Holland_Bali_2019_1_%28cropped%29_%28cropped%29.jpg'
+  }
 
   guardarCambios(actor: IActorCreacionDTO){
-    console.log("editando el actor: " + actor);
+    console.log("name: " + actor.nombre);
+    console.log("foto: " + actor.foto);
+    console.log("date" + actor.fechaNacimiento);
   }
 }

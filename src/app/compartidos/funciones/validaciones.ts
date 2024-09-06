@@ -22,3 +22,21 @@ export function primeraLetraMayuscula():ValidatorFn {
   }
 }
 
+
+export function fechaNoPuedeSerFutura():ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const fechaEscodigdaPorUsuario = new Date(control.value);
+    const hoy = new Date();
+
+    if( fechaEscodigdaPorUsuario > hoy ){
+      return {
+        futuro: {
+          mensaje: 'La fecha no puede ser del futuro',
+        }
+      }
+    }
+
+    return null;
+  }
+}
+

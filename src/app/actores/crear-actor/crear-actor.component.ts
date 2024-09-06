@@ -11,6 +11,8 @@ import { IActorCreacionDTO } from '../actores';
 })
 export class CrearActorComponent {
   guardarCambios(actor: IActorCreacionDTO){
-    console.log("creando el actor: " + actor);
+    console.log("name: " + actor.nombre);
+    console.log("foto: " + actor.foto);
+    console.log("date" + actor.fechaNacimiento);
   }
 }

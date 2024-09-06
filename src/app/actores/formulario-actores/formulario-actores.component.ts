@@ -7,11 +7,13 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { IActorCreacionDTO, IActorDTO } from '../actores';
 import moment from 'moment';
+import { fechaNoPuedeSerFutura } from '../../compartidos/funciones/validaciones';
+import { InputImgComponent } from "../../compartidos/components/input-img/input-img.component";
 
 @Component({
   selector: 'app-formulario-actores',
   standalone: true,
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule, InputImgComponent],
   templateUrl: './formulario-actores.component.html',
   styleUrl: './formulario-actores.component.css'
 })
@@ -22,7 +24,6 @@ export class FormularioActoresComponent implements OnInit {
       this.form.patchValue(this.modelo);
     }
   }
-
 
   private formBuilder = inject(FormBuilder);
 
@@ -36,8 +37,35 @@ export class FormularioActoresComponent implements OnInit {
     nombre: ['', {
       validators: [Validators.required]
     }],
-    fechaNacimiento: new FormControl<Date | null>(null)
+    fechaNacimiento: new FormControl<Date | null>(null, {
+      validators: [Validators.required, fechaNoPuedeSerFutura()]
+    }),
+    foto: new FormControl<File | string | null>(null),
   })
+
+  obtenerErroCampoNombre(){
+    let campo = this.form.controls.nombre;
+
+    if( campo.hasError('required') ){
+      return "El campo nombre es requerido";
+    }
+
+    return '';
+  }
+
+  obtenerErrorCampoFechaNaciimiento(){
+    let campo = this.form.controls.fechaNacimiento;
+
+    if( campo.hasError('required') ){
+      return "El campo fecha es requerido";
+    }
+
+    if( campo.hasError('futuro') ){
+      return campo.getError('futuro').mensaje;
+    }
+
+    return '';
+  }
 
   guardarCambios(){
     if( !this.form.valid ) return;
@@ -45,6 +73,16 @@ export class FormularioActoresComponent implements OnInit {
     const actor = this.form.value as IActorCreacionDTO;
     actor.fechaNacimiento = moment(actor.fechaNacimiento).toDate();
 
+    // Si es un string la elimina del actor porque es la que ya venia de la base de datos.
+    // y solo manda la data necesaria al evento.
+    if( typeof actor.foto === 'string' ){
+      actor.foto = undefined;
+    }
+
     this.posteoFormulario.emit(actor);
+  }
+
+  archivoSeleccionado( file: File){
+    this.form.controls.foto.setValue( file );
   }
 }
