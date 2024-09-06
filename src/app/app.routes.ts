@@ -11,6 +11,7 @@ import { EditarGeneroComponent } from './generos/editar-genero/editar-genero.com
 import { EditarActorComponent } from './actores/editar-actor/editar-actor.component';
 import { EditarPeliculaComponent } from './peliculas/editar-pelicula/editar-pelicula.component';
 import { EditarCineComponent } from './cine/editar-cine/editar-cine.component';
+import { FiltroPeliculasComponent } from './peliculas/filtro-peliculas/filtro-peliculas.component';
 
 export const routes: Routes = [
   { path: "", component: LandinPageComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: "actores/editar/:id", component: EditarActorComponent }, // parametros en la URL
   { path: "peliculas/editar/:id", component: EditarPeliculaComponent }, // parametros en la URL
   { path: "cines/editar/:id", component: EditarCineComponent }, // parametros en la URL
+  { path: 'peliculas/filtrar', component: FiltroPeliculasComponent },
   { path: "**", redirectTo: "" } // atrapalo-todo
 ];
