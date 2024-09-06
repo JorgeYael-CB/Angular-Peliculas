@@ -8,6 +8,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { ListadoPeliculasComponent } from "../listado-peliculas/listado-peliculas.component";
 import { IFiltroPelicula } from './filtroPelicula';
 
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-filtro-peliculas',
   standalone: true,
@@ -18,10 +22,15 @@ import { IFiltroPelicula } from './filtroPelicula';
 export class FiltroPeliculasComponent implements OnInit {
 
   ngOnInit(): void {
+    // Leer urlsParams
+    this.leerValoresUrl();
+    this.buscarPeliculas(this.form.value as IFiltroPelicula);
+
     // Escuchar eventos del formulario
     this.form.valueChanges.subscribe( valores => {
       this.peliculas = this.peliculasOriginal;
       this.buscarPeliculas(valores as IFiltroPelicula);
+      this.escribirParamsBusquedaUrl(valores as IFiltroPelicula);
     });
   }
 
@@ -31,9 +40,9 @@ export class FiltroPeliculasComponent implements OnInit {
         .filter( p => p.titulo.toLowerCase().indexOf(valores.titulo.toLocaleLowerCase()) !== - 1 );
     }
 
-    if( valores.generoId !== 0 ){
+    if( +valores.generoId !== 0 ){
       this.peliculas = this.peliculas
-        .filter( p => p.generos.indexOf(valores.generoId) !== -1 );
+        .filter( p => p.generos.indexOf(+valores.generoId) !== -1 );
     }
 
     if( valores.proximosEstrenos ){
@@ -52,6 +61,8 @@ export class FiltroPeliculasComponent implements OnInit {
   }
 
   private formBuilder = inject(FormBuilder);
+  private location = inject(Location);
+  private activatedRoute = inject(ActivatedRoute);
 
   peliculasOriginal = [
     {
@@ -124,5 +135,28 @@ export class FiltroPeliculasComponent implements OnInit {
     {id: 3, nombre: 'Comedia'},
   ]
 
+  escribirParamsBusquedaUrl( valores: IFiltroPelicula ){
+    let queryStrings = [];
+
+    if( valores.titulo ) queryStrings.push(`titulo=${ encodeURI(valores.titulo) }`);
+    if( valores.generoId !== 0 ) queryStrings.push(`generoId=${ valores.generoId }`);
+    if( valores.enCines ) queryStrings.push(`enCines=${ valores.enCines }`);
+    if( valores.proximosEstrenos ) queryStrings.push(`proximosEstrenos=${ valores.proximosEstrenos }`);
+
+    this.location.replaceState('peliculas/filtrar', queryStrings.join('&'));
+  }
+
+  leerValoresUrl(){
+    this.activatedRoute.queryParams.subscribe( (params:any) => {
+      var obj: any = {};
+
+      if( params.titulo ) obj.titulo = params.titulo;
+      if( params.generoId ) obj.generoId = params.generoId;
+      if( params.enCines ) obj.enCines = params.enCines;
+      if( params.proximosEstrenos ) obj.proximosEstrenos = params.proximosEstrenos;
+
+      this.form.patchValue(obj);
+    });
+  }
 
 }
