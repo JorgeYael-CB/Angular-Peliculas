@@ -1,4 +1,4 @@
-import { Component, Input, numberAttribute } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICineCreacionDto } from '../cines';
 import { FormularioActoresComponent } from "../../actores/formulario-actores/formulario-actores.component";
 import { FormularioCinesComponent } from "../formulario-cines/formulario-cines.component";

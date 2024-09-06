@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 import { IActorCreacionDTO, IActorDTO } from '../actores';
 import moment from 'moment';
 import { fechaNoPuedeSerFutura } from '../../compartidos/funciones/validaciones';
-import { InputImgComponent } from "../../compartidos/components/input-img/input-img.component";
+import { InputImgComponent } from "../../compartidos/componentes/input-img/input-img.component";
 
 @Component({
   selector: 'app-formulario-actores',

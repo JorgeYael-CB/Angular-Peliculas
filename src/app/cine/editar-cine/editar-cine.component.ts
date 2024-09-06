@@ -12,7 +12,8 @@ import { FormularioCinesComponent } from "../formulario-cines/formulario-cines.c
 export class EditarCineComponent {
   @Input({transform: numberAttribute})
   id!: number;
-  cine: ICineDto = {id: 1, nombre: 'Acropolis'}
+  cine: ICineDto = {id: 1, nombre: 'Acropolis',
+    latitud: 19.335555669023176, longitud: -99.1570706461639}
 
   guardarCambios( cine: ICineCreacionDto ){
     console.log('Cine: ' + cine.nombre);
