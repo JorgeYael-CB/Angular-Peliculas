@@ -6,11 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { IActorAutocompleteDto } from '../actores';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-autocomplete-actores',
   standalone: true,
-  imports: [MatAutocompleteModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule, FormsModule, MatTableModule, MatInputModule],
+  imports: [MatAutocompleteModule, ReactiveFormsModule,
+    MatFormFieldModule, MatIconModule, FormsModule, MatTableModule,
+    MatInputModule, DragDropModule
+  ],
   templateUrl: './autocomplete-actores.component.html',
   styleUrl: './autocomplete-actores.component.css'
 })
@@ -45,16 +49,25 @@ export class AutocompleteActoresComponent {
   @ViewChild(MatTable)
   table!: MatTable<IActorAutocompleteDto>;
 
-  actorSeleccionado(event: MatAutocompleteSelectedEvent){
-    this.actoresSeleccionados.push(event.option.value);
-    this.control.patchValue('');
-
+  renderTables(){
     if( this.table ){
       this.table.renderRows();
     }
   }
 
+  actorSeleccionado(event: MatAutocompleteSelectedEvent){
+    this.actoresSeleccionados.push(event.option.value);
+    this.control.patchValue('');
+    this.renderTables();
+  }
+
   eliminar(actor: IActorAutocompleteDto){
     this.actoresSeleccionados = this.actoresSeleccionados.filter( a => a.id !== actor.id );
+  }
+
+  finalizarArrastre( event: CdkDragDrop<any> ){
+    const prevIndex = this.actoresSeleccionados.findIndex( a => a === event.item.data );
+    moveItemInArray(this.actoresSeleccionados, prevIndex, event.currentIndex);
+    this.renderTables();
   }
 }
