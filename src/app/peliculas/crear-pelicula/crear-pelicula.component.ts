@@ -30,6 +30,24 @@ export class CrearPeliculaComponent {
 
   generosNoSeleccionados: ISelectorMultipleModeloDto[] = [];
 
+  cinesSeleccionados: ISelectorMultipleModeloDto[] = [
+    {
+      llave: 1,
+      valor: 'Cinemex'
+    },
+    {
+      llave: 1,
+      valor: 'OtroCine'
+    },
+    {
+      llave: 1,
+      valor: 'Blue Mall'
+    },
+  ];
+
+  cinesNoSeleccionados: ISelectorMultipleModeloDto[] = [];
+
+
   guardarCambios( pelicula: IPeliculaCreacionDto ){
     console.log(`Creando pelicula ${pelicula.titulo}`);
   }

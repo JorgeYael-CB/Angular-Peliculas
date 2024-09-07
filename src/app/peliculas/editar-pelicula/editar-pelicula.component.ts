@@ -40,6 +40,24 @@ export class EditarPeliculaComponent {
     },
   ];
 
+  cinesSeleccionados: ISelectorMultipleModeloDto[] = [
+    {
+      llave: 1,
+      valor: 'Cinemex'
+    }
+  ];
+
+  cinesNoSeleccionados: ISelectorMultipleModeloDto[] = [
+    {
+      llave: 1,
+      valor: 'OtroCine'
+    },
+    {
+      llave: 1,
+      valor: 'Blue Mall'
+    },
+  ];
+
   guardarCambios( pelicula: IPeliculaCreacionDto ){
     console.log('Editando la pelicula: ' + pelicula.titulo);
   }
