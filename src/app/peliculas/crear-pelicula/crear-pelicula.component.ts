@@ -3,6 +3,7 @@ import { IPeliculaCreacionDto } from '../peliculas';
 import { FormularioGeneroComponent } from "../../generos/formulario-genero/formulario-genero.component";
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
 import { ISelectorMultipleModeloDto } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
+import { IActorAutocompleteDto } from '../../actores/actores';
 
 @Component({
   selector: 'app-crear-pelicula',
@@ -44,6 +45,8 @@ export class CrearPeliculaComponent {
       valor: 'Blue Mall'
     },
   ];
+
+  actoresSeleccionados:IActorAutocompleteDto[] = [];
 
   cinesNoSeleccionados: ISelectorMultipleModeloDto[] = [];
 

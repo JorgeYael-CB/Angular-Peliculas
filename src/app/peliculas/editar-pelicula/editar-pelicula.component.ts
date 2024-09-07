@@ -2,6 +2,7 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { IPeliculaCreacionDto, IPeliculaDto } from '../peliculas';
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
 import { ISelectorMultipleModeloDto } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
+import { IActorAutocompleteDto } from '../../actores/actores';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -55,6 +56,15 @@ export class EditarPeliculaComponent {
     {
       llave: 1,
       valor: 'Blue Mall'
+    },
+  ];
+
+  actoresSeleccionados:IActorAutocompleteDto[] = [
+    {
+      foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/1200px-Tom_Holland_by_Gage_Skidmore.jpg',
+      personaje: 'Petter Parker',
+      id: 1,
+      nombre: 'Tom Holland'
     },
   ];
 

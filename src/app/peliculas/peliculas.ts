@@ -1,3 +1,4 @@
+import { IActorAutocompleteDto } from "../actores/actores";
 
 
 export interface IPeliculaDto {
@@ -15,4 +16,5 @@ export interface IPeliculaCreacionDto {
   poster?: File;
   generosIds?: number[];
   cinesIds: number[];
+  actores?: IActorAutocompleteDto[];
 }
