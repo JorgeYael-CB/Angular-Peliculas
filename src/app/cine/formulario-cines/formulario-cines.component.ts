@@ -7,11 +7,12 @@ import { RouterLink } from '@angular/router';
 import { ICineCreacionDto } from '../cines';
 import { MapaComponent } from "../../compartidos/componentes/mapa/mapa.component";
 import { ICoordenada } from '../../compartidos/componentes/mapa/Coordenada';
+import { AutocompleteActoresComponent } from "../../actores/autocomplete-actores/autocomplete-actores.component";
 
 @Component({
   selector: 'app-formulario-cines',
   standalone: true,
-  imports: [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MapaComponent],
+  imports: [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MapaComponent, AutocompleteActoresComponent],
   templateUrl: './formulario-cines.component.html',
   styleUrls: ['./formulario-cines.component.css']
 })

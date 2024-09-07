@@ -9,14 +9,15 @@ import { InputImgComponent } from '../../compartidos/componentes/input-img/input
 import { IPeliculaCreacionDto, IPeliculaDto } from '../peliculas';
 import moment from 'moment';
 import { ISelectorMultipleModeloDto } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
-import { S } from '@angular/cdk/keycodes';
 import { SelectorMultipleComponent } from "../../compartidos/componentes/selector-multiple/selector-multiple.component";
+import { AutocompleteActoresComponent } from "../../actores/autocomplete-actores/autocomplete-actores.component";
+
 
 @Component({
   selector: 'app-formulario-peliculas',
   standalone: true,
   imports: [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink,
-    MatDatepickerModule, InputImgComponent, SelectorMultipleComponent],
+    MatDatepickerModule, InputImgComponent, SelectorMultipleComponent, AutocompleteActoresComponent],
 
   templateUrl: './formulario-peliculas.component.html',
   styleUrl: './formulario-peliculas.component.css'

@@ -11,3 +11,10 @@ export interface IActorCreacionDTO {
   fechaNacimiento: Date;
   foto?: File;
 }
+
+export interface IActorAutocompleteDto {
+  id: number;
+  nombre: string;
+  personaje: string;
+  foto: string;
+}
