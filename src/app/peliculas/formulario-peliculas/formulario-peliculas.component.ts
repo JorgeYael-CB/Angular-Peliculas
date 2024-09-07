@@ -8,12 +8,15 @@ import { RouterLink } from '@angular/router';
 import { InputImgComponent } from '../../compartidos/componentes/input-img/input-img.component';
 import { IPeliculaCreacionDto, IPeliculaDto } from '../peliculas';
 import moment from 'moment';
+import { ISelectorMultipleModeloDto } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
+import { S } from '@angular/cdk/keycodes';
+import { SelectorMultipleComponent } from "../../compartidos/componentes/selector-multiple/selector-multiple.component";
 
 @Component({
   selector: 'app-formulario-peliculas',
   standalone: true,
   imports: [MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink,
-  MatDatepickerModule, InputImgComponent],
+    MatDatepickerModule, InputImgComponent, SelectorMultipleComponent],
 
   templateUrl: './formulario-peliculas.component.html',
   styleUrl: './formulario-peliculas.component.css'
@@ -26,6 +29,11 @@ export class FormularioPeliculasComponent implements OnInit {
     }
   }
 
+  @Input({required: true})
+  generosNoSeleccionados!: ISelectorMultipleModeloDto[];
+
+  @Input({required: true})
+  generosSeleccionados!: ISelectorMultipleModeloDto[];
 
   @Input()
   modelo?: IPeliculaDto;
@@ -51,6 +59,10 @@ export class FormularioPeliculasComponent implements OnInit {
 
     const pelicula = this.form.value as IPeliculaCreacionDto;
     pelicula.fechaLanzamiento = moment( pelicula.fechaLanzamiento ).toDate();
+
+    const generosIds = this.generosNoSeleccionados.map(valor => valor.llave);
+    pelicula.generosIds = generosIds;
+
     this.posteoFormulario.emit( pelicula );
   }
 

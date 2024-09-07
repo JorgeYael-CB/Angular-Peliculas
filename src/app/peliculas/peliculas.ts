@@ -13,4 +13,5 @@ export interface IPeliculaCreacionDto {
   fechaLanzamiento: Date;
   trailer: string;
   poster?: File;
+  generosIds?: number[];
 }

@@ -1,6 +1,7 @@
 import { Component, Input, numberAttribute } from '@angular/core';
 import { IPeliculaCreacionDto, IPeliculaDto } from '../peliculas';
 import { FormularioPeliculasComponent } from "../formulario-peliculas/formulario-peliculas.component";
+import { ISelectorMultipleModeloDto } from '../../compartidos/componentes/selector-multiple/selectorMultipleModelo';
 
 @Component({
   selector: 'app-editar-pelicula',
@@ -20,6 +21,24 @@ export class EditarPeliculaComponent {
     trailer: 'ABC',
     poster: 'https://upload.wikimedia.org/wikipedia/en/7/73/Moana_2_poster.jpg'
   };
+
+  generosNoSeleccionados: ISelectorMultipleModeloDto[] = [
+    {
+      llave: 1,
+      valor: 'Drama'
+    },
+    {
+      llave: 1,
+      valor: 'Accion'
+    },
+  ];
+
+  generosSeleccionados: ISelectorMultipleModeloDto[] = [
+    {
+      llave: 1,
+      valor: 'Comedia'
+    },
+  ];
 
   guardarCambios( pelicula: IPeliculaCreacionDto ){
     console.log('Editando la pelicula: ' + pelicula.titulo);
