@@ -4,6 +4,6 @@ export interface IGeneroCreacionDTO {
   nombre: string;
 }
 
-export interface IGeneroEditDto extends IGeneroCreacionDTO {
+export interface IGeneroDto extends IGeneroCreacionDTO {
   id: number | string;
 }

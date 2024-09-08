@@ -1,6 +1,6 @@
 import { Component, Input, numberAttribute } from '@angular/core';
 import { FormularioGeneroComponent } from "../formulario-genero/formulario-genero.component";
-import { IGeneroCreacionDTO, IGeneroEditDto } from '../generos';
+import { IGeneroCreacionDTO, IGeneroDto } from '../generos';
 
 @Component({
   selector: 'app-editar-genero',
@@ -13,7 +13,7 @@ export class EditarGeneroComponent {
   @Input({transform: numberAttribute })
   id!: number;
 
-  genero: IGeneroEditDto = {id: 1, nombre: "Comedia"}
+  genero: IGeneroDto = {id: 1, nombre: "Comedia"}
 
   guardarCambios( genero: IGeneroCreacionDTO ){
     console.log(`editando el genero: ${genero.nombre}`);

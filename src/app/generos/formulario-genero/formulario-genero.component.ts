@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { IGeneroCreacionDTO, IGeneroEditDto } from '../generos';
+import { IGeneroCreacionDTO, IGeneroDto } from '../generos';
 
 
 
@@ -27,7 +27,7 @@ export class FormularioGeneroComponent implements OnInit {
   posteoFormulario = new EventEmitter<IGeneroCreacionDTO>();
 
   @Input()
-  modelo?: IGeneroEditDto;
+  modelo?: IGeneroDto;
 
 
   // form reactivo
