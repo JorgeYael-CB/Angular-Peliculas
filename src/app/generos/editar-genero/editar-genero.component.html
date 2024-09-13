@@ -1,4 +1,7 @@
-<h2>Editar genero</h2>
 
-
-<app-formulario-genero [modelo]="genero" (posteoFormulario)="guardarCambios($event)"></app-formulario-genero>
+<app-editar-entidad
+  [formulario]="formularioGenero"
+  [id]="id"
+  rutaIndice="/generos"
+  title="Editar genero"
+></app-editar-entidad>

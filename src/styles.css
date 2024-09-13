@@ -6,3 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body{
   height: fit-content;
 }
+
+.indice-elementos{
+  margin-top: 1rem;
+}
+
+.indice-elementos a{
+  margin-right: 1rem;
+}

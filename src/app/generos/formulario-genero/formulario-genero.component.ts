@@ -34,7 +34,9 @@ export class FormularioGeneroComponent implements OnInit {
   private formbuilder = inject(FormBuilder);
 
   form = this.formbuilder.group({
-    nombre: ['', {validators: [Validators.required, primeraLetraMayuscula()]}] // campo y validaciones.
+    nombre: ['', {validators: [Validators.required, primeraLetraMayuscula(),
+      Validators.maxLength(50)
+    ]}] // campo y validaciones.
   });
 
 
@@ -44,6 +46,11 @@ export class FormularioGeneroComponent implements OnInit {
 
     if( nombre.hasError('required') ){ // si tiene el campo required
       return "El campo nombre es requerido";
+    }
+
+    if( nombre.hasError('maxlength') ){
+      console.log('errr');
+      return `El campo nombre no puede tener mas de ${nombre.getError('maxlength').requiredLength} caracteres`;
     }
 
     if( nombre.hasError('primeraLetraMayuscula') ){

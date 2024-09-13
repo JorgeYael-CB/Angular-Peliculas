@@ -1,28 +1,27 @@
 import { Component, Input, numberAttribute } from '@angular/core';
-import { IActorCreacionDTO, IActorDTO } from '../actores';
 import { FormularioActoresComponent } from "../formulario-actores/formulario-actores.component";
+import { MostrarErroresComponent } from "../../compartidos/componentes/mostrar-errores/mostrar-errores.component";
+import { CargandoComponent } from "../../compartidos/componentes/cargando/cargando.component";
+import { EditarEntidadComponent } from "../../compartidos/componentes/editar-entidad/editar-entidad.component";
+import { SERVICIO_CRUD_TOKEN } from '../../compartidos/provedores/provedores';
+import { ActoresService } from '../actores.service';
 
 @Component({
   selector: 'app-editar-actor',
   standalone: true,
-  imports: [FormularioActoresComponent],
+  imports: [FormularioActoresComponent, MostrarErroresComponent, CargandoComponent, EditarEntidadComponent],
   templateUrl: './editar-actor.component.html',
-  styleUrl: './editar-actor.component.css'
+  styleUrl: './editar-actor.component.css',
+  providers:[
+    {provide: SERVICIO_CRUD_TOKEN, useClass: ActoresService}
+  ]
 })
 export class EditarActorComponent {
+
+
   @Input({transform: numberAttribute})
   id!: number;
 
-  actor: IActorDTO = {
-    id: 1,
-    nombre: 'Tom Holland',
-    fechaNacimiento: new Date('1991-01-25'),
-    foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Tom_Holland_Bali_2019_1_%28cropped%29_%28cropped%29.jpg/800px-Tom_Holland_Bali_2019_1_%28cropped%29_%28cropped%29.jpg'
-  }
+  formularioActores = FormularioActoresComponent;
 
-  guardarCambios(actor: IActorCreacionDTO){
-    console.log("name: " + actor.nombre);
-    console.log("foto: " + actor.foto);
-    console.log("date" + actor.fechaNacimiento);
-  }
 }
